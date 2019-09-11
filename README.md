@@ -12,5 +12,7 @@
 
 ## 使用方法
 1 将myys.zsh-theme文件拷贝到~/.oh-my-zsh/themes下
+
 2 修改~/.zshrc中的theme配置为myys
+
 3 激活 `source ~/.zshrc`
