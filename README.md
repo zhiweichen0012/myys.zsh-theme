@@ -16,3 +16,9 @@
 2 修改~/.zshrc中的theme配置为myys
 
 3 激活 `source ~/.zshrc`
+
+
+<hr>
+更新：
+
+- 2019.9.12：修复BUG（连续使用Tab导致当前命令行乱码）
