@@ -17,6 +17,8 @@
 
 3 激活 `source ~/.zshrc`
 
+4 在`~/.condarc`中添加`changeps1: False`
+
 
 <hr>
 更新：
