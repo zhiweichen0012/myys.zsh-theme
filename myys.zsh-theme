@@ -12,6 +12,25 @@ YS_VCS_PROMPT_SUFFIX="%{$reset_color%}"
 YS_VCS_PROMPT_DIRTY=" %{$fg[red]%}x"
 YS_VCS_PROMPT_CLEAN=" %{$fg[green]%}o"
 
+# Conda info
+local conda_info='$(conda_prompt_info)'
+conda_prompt_info() {
+  if [ -n "$CONDA_DEFAULT_ENV" ]; then
+    echo -n "($CONDA_DEFAULT_ENV) "
+  else 
+    echo -n "(base) "
+  fi
+}
+
+# virtualenv info
+local virtualenv_info='$(virtualenv_prompt_info)'
+virtualenv_prompt_info() {
+  if [ -n "$VIRTUAL_ENV" ]; then
+    VIRTUAL_ENV_NAME=`basename $VIRTUAL_ENV`
+    echo -n "($VIRTUAL_ENV_NAME) "
+  fi
+}
+
 # Git info
 local git_info='$(git_prompt_info)'
 ZSH_THEME_GIT_PROMPT_PREFIX="${YS_VCS_PROMPT_PREFIX1}git${YS_VCS_PROMPT_PREFIX2}"
@@ -37,25 +56,6 @@ ys_hg_prompt_info() {
 
 local exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
 
-# Conda info
-local conda_info='$(conda_prompt_info)'
-conda_prompt_info() {
-  if [ -n "$CONDA_DEFAULT_ENV" ]; then
-    echo -n "%{$fg[green]($CONDA_DEFAULT_ENV)%{$reset_color%} "
-  else 
-    echo -n "%{$fg[green](base)%{$reset_color%} "
-  fi
-}
-
-# virtualenv info
-local virtualenv_info='$(virtualenv_prompt_info)'
-virtualenv_prompt_info() {
-  if [ -n "$VIRTUAL_ENV" ]; then
-    VIRTUAL_ENV_NAME=`basename $VIRTUAL_ENV`
-    echo -n "%{$fg[green]($VIRTUAL_ENV_NAME)%{$reset_color%} "
-  fi
-}
-
 # Prompt format:
 #
 # PRIVILEGES USER @ MACHINE in DIRECTORY on git:BRANCH STATE [TIME] C:LAST_EXIT_CODE
@@ -69,8 +69,8 @@ PROMPT="
 %{$terminfo[bold]$fg[blue]%}#%{$reset_color%} \
 %(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[cyan]%}%n) \
 %{$fg[white]%}@ \
-${conda_info}\
-${virtualenv_info}\
+%{$fg[green]%}${conda_info}\
+%{$fg[green]%}${virtualenv_info}\
 %{$fg[white]%}in \
 %{$terminfo[bold]$fg[yellow]%}%~%{$reset_color%}\
 ${hg_info}\
