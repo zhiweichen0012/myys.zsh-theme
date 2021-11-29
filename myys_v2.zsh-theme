@@ -56,6 +56,7 @@ ys_hg_prompt_info() {
 
 local exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
 
+ipStr=$(ip -o addr | awk -F "inet |/" '!/127.0.0.1/ {print $2}' | sort -n | head -n 1)
 # Prompt format:
 #
 # PRIVILEGES USER @ MACHINE in DIRECTORY on git:BRANCH STATE [TIME] C:LAST_EXIT_CODE
@@ -69,6 +70,7 @@ PROMPT="
 %{$terminfo[bold]$fg[blue]%}#%{$reset_color%} \
 %(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[cyan]%}%n) \
 %{$fg[white]%}@ \
+%{$fg[magenta]%}${ipStr} \
 %{$fg[green]%}${conda_info}\
 %{$fg[green]%}${virtualenv_info}\
 %{$fg[white]%}in \
