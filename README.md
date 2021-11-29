@@ -19,8 +19,12 @@
 
 4 在`~/.condarc`中添加`changeps1: False`
 
+# myys_v2.zsh-theme
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/55bf1c99ca7e462a807d86eaa2509091.png)
 
 <hr>
 更新：
 
 - 2019.9.12：修复BUG（连续使用Tab导致当前命令行乱码）
+- 2021.11.29：更新V2版本，优化界面，显示IP地址。
